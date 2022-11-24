@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="page_header">
+        <div class="header__item">
+            <div class="menu header__menu">
+                <!-- <img src="./assets/icons/logo.svg" alt=""> -->
+            </div>
+            <h1 class="logo desktop">
+                Товары и точка
+            </h1>
+        </div>
+        <h1 class="logo mobile">
+            Товары и точка
+        </h1>
+        
+        <div class="header__search">
+            <input class="header__search_input" type="text" placeholder="Я ищу...">
+            <img class="header__search_sign" src="./assets/icons/search.svg" alt="">
+        </div>
+        <nav class="desktop">
+            <ul class="header__nav">
+                <li>
+                    <a href="">
+                        <img class="header__nav_icon" src="./assets/icons/account.svg" alt="">
+                        <p>
+                            профиль
+                        </p>
+                        
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img class="header__nav_icon" src="./assets/icons/cart.svg" alt="">
+                        <p>
+                            корзина
+                        </p>
+                        
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+        <nav class="mobile nav_mobile_bottom">
+            <ul class="">
+                <li>
+                    <a href="">
+                        <img class="header__nav_icon" src="./assets/icons/home.svg" alt="">
+                        
+                        
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img class="header__nav_icon" src="./assets/icons/nav-mobile-search.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img class="header__nav_icon" src="./assets/icons/cart-active.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img class="header__nav_icon" src="./assets/icons/heart-gray.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img class="header__nav_icon" src="./assets/icons/profile-gray.svg" alt="">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <article>
+            <section class="cart">
+                <h2 class="section_title">Корзина</h2>
+                <div class="cart__in_the_cart">
+                    <div class="cart__check_all">
+                        <label class="check_all__label checkbox_container" for="check_all">
+                            <input id="check_all" type="checkbox" class="checkbox">
+                            
+                                <span class="custom_checkbox"></span>
+                                Выбрать все
+                        </label>
+                    </div>
+                    <div class="goods in_the_cart_goods">
+                        <div class="good" data-price="522">
+                            <div class="good__info">
+                                <label class="good__checkbox checkbox_container">
+                                    <input type="checkbox" name="good-1" id="" class="checkbox">
+                                    <span class="custom_checkbox"></span>
+                                </label>
+                                <div class="good__img">
+                                    <img src="./assets/images/good-1.png" alt="">
+                                </div>
+                                <div class="good__details">
+                                    <div class="good__price mobile">
+                                        <div class="price">
+                                            <span class="price_sum">
+                                                522
+                                            </span> 
+                                            <span class="price_cur">сом</span>
+                                        </div>
+                                        <div class="old_price">
+                                            1051 сом
+                                        </div>
+    
+                                    </div>
+                                    <p class="good__title">
+                                        Футболка UZcotton мужская
+                                    </p>
+                                    <div class="good__parameters">
+                                        <p class="good__color">
+                                            Цвет: белый
+                                        </p>
+                                        <p class="good__size">
+                                            Размер: 56
+                                        </p>
+                                    </div>
+                                    <div class="good__seller">
+                                        <p>Коледино WB</p>
+                                            <div class="good__seller_name desktop">
+                                                OOO Вайлдберриз
+                                                <img src="./assets/icons/icon-20.svg" alt="">
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="good__order">
+                                <div class="good__quantity">
+                                    <div class="good__added">
+                                        <div class="counter">
+                                            <div class="counter__decrease">
+                                                -
+                                            </div>
+                                            <div class="counter__quantity">
+                                                1
+                                            </div>
+                                            <div class="counter__increase">
+                                                +
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="good__in_stock">
+                                        Осталось 2 шт.
+                                    </div>
+                                    <div class="good__action">
+                                        <div class="add_to_favorites">
+                                            <img src="./assets/icons/heart.svg" alt="">
+                                        </div>
+                                        <div class="remove">
+                                            <img src="./assets/icons/trash.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="good__price desktop">
+                                    <div class="price">
+                                        <span class="price_sum">
+                                            522
+                                        </span> 
+                                        <span class="price_cur">сом</span>
+                                    </div>
+                                    <div class="old_price">
+                                        1051 сом
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="good" data-price="10500.235">
+                            <div class="good__info">
+                                <label class="good__checkbox checkbox_container">
+                                    <input type="checkbox" name="good-1" id="" class="checkbox">
+                                    <span class="custom_checkbox"></span>
+                                </label>
+                                <div class="good__img">
+                                    <img src="./assets/images/good-2.png" alt="">
+                                </div>
+                                <div class="good__details">
+                                    <div class="good__price mobile">
+                                        <div class="price">
+                                            <span class="price_sum big_sum">
+                                                2 100 047
+                                            </span> 
+                                            <span class="price_cur">сом</span>
+                                        </div>
+                                        <div class="old_price">
+                                            2 300 047 сом
+                                        </div>
+                                    </div>
+                                    <p class="good__title">
+                                        Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe
+                                    </p>
+                                    <div class="good__parameters">
+                                        <p class="good__color">
+                                            Цвет: прозрачный
+                                        </p>
+                                        <p class="good__size">
+                                            <!-- Размер: 56 -->
+                                        </p>
+                                    </div>
+                                    <div class="good__seller">
+                                        <p>Коледино WB</p>
+                                            <div class="good__seller_name desktop">
+                                                OOO Мегапрофстиль
+                                                <img src="./assets/icons/icon-20.svg" alt="">
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="good__order">
+                                <div class="good__quantity">
+                                    <div class="good__added">
+                                        <div class="counter">
+                                            <div class="counter__decrease">
+                                                -
+                                            </div>
+                                            <div class="counter__quantity">
+                                                1
+                                            </div>
+                                            <div class="counter__increase">
+                                                +
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="good__in_stock">
+                                    
+                                    </div>
+                                    <div class="good__action">
+                                        <div class="add_to_favorites">
+                                            <img src="./assets/icons/heart.svg" alt="">
+                                        </div>
+                                        <div class="remove">
+                                            <img src="./assets/icons/trash.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="good__price desktop">
+                                    <div class="price">
+                                        <span class="price_sum big_sum">
+                                            2 100 047
+                                        </span> 
+                                        <span class="price_cur">сом</span>
+                                    </div>
+                                    <div class="old_price">
+                                        2 300 047 сом
+                                    </div>
+
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="good" data-price="247">
+                            <div class="good__info">
+                                <label class="good__checkbox checkbox_container">
+                                    <input type="checkbox" name="good-3" id="" class="checkbox">
+                                    <span class="custom_checkbox"></span>
+                                </label>
+                                <div class="good__img">
+                                    <img src="./assets/images/good-3.png" alt="">
+                                </div>
+                                <div class="good__details">
+                                    <div class="good__price mobile">
+                                        <div class="price">
+                                            <span class="price_sum">
+                                                494
+                                            </span> 
+                                           
+                                            <span class="price_cur">сом</span>
+                                        </div>
+                                        <div class="old_price">
+                                            950 сом
+                                        </div>
+    
+                                    </div>
+                                    <p class="good__title">
+                                        Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell 
+                                    </p>
+                                    <div class="good__parameters">
+                                        <!-- <p class="good__color">
+                                            Цвет: белый
+                                        </p>
+                                        <p class="good__size">
+                                            Размер: 56
+                                        </p> -->
+                                    </div>
+                                    <div class="good__seller">
+                                        <p>Коледино WB</p>
+                                            <div class="good__seller_name desktop">
+                                                OOO Вайлдберриз
+                                                <img src="./assets/icons/icon-20.svg" alt="">
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="good__order">
+                                <div class="good__quantity">
+                                    <div class="good__added">
+                                        <div class="counter">
+                                            <div class="counter__decrease">
+                                                -
+                                            </div>
+                                            <div class="counter__quantity">
+                                                1
+                                            </div>
+                                            <div class="counter__increase">
+                                                +
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="good__in_stock">
+                                        Осталось 2 шт.
+                                    </div>
+                                    <div class="good__action">
+                                        <div class="add_to_favorites">
+                                            <img src="./assets/icons/heart.svg" alt="">
+                                        </div>
+                                        <div class="remove">
+                                            <img src="./assets/icons/trash.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="good__price desktop">
+                                    <div class="price">
+                                        <span class="price_sum">
+                                            494
+                                        </span> 
+                                       
+                                        <span class="price_cur">сом</span>
+                                    </div>
+                                    <div class="old_price">
+                                        950 сом
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                
+
+            </section>
+            <section class="cart__out_of_stock">
+                <h2 class="section_title">Отсутствуют · 3 товара</h2>
+                <div class="goods out_of_stock_goods">
+                    <div class="good out_of_stock_good">
+                        <div class="good__info">
+                            <div class="good__img">
+                                <img src="./assets/images/good-1-bw.png" alt="">
+                            </div>
+                            <div class="good__details">
+                                <p class="good__title">
+                                    Футболка UZcotton мужская
+                                </p>
+                                <div class="good__parameters">
+                                    <p class="good__color">
+                                        Цвет: белый
+                                    </p>
+                                    <p class="good__size">
+                                        Размер: 56
+                                    </p>
+                                </div>
+                                <!-- <div class="good__seller">
+                                    <p>Коледино WB</p>
+                                    <div class="good__seller_name desktop">
+                                        OOO Вайлдберриз
+                                        <img src="./assets/icons/icon-20.svg" alt="">
+                                    </div>
+                                </div> -->
+                            </div>
+                            
+                        </div>
+                        <div class="good__order">
+                            <div class="good__quantity">
+                                <div class="good__action">
+                                    <div class="add_to_favorites">
+                                        <img src="./assets/icons/heart.svg" alt="">
+                                    </div>
+                                    <div class="remove">
+                                        <img src="./assets/icons/trash.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="good out_of_stock_good">
+                        <div class="good__info">
+                            <div class="good__img">
+                                <img src="./assets/images/good-1-bw.png" alt="">
+                            </div>
+                            <div class="good__details">
+                                <p class="good__title">
+                                    Футболка UZcotton мужская
+                                </p>
+                                <div class="good__parameters">
+                                    <p class="good__color">
+                                        Цвет: белый
+                                    </p>
+                                    <p class="good__size">
+                                        Размер: 56
+                                    </p>
+                                </div>
+                                <!-- <div class="good__seller">
+                                    <p>Коледино WB</p>
+                                    <div class="good__seller_name desktop">
+                                        OOO Вайлдберриз
+                                        <img src="./assets/icons/icon-20.svg" alt="">
+                                    </div>
+                                </div> -->
+                            </div>
+                            
+                        </div>
+                        <div class="good__order">
+                            <div class="good__quantity">
+                                <div class="good__action">
+                                    <div class="add_to_favorites">
+                                        <img src="./assets/icons/heart.svg" alt="">
+                                    </div>
+                                    <div class="remove">
+                                        <img src="./assets/icons/trash.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="good out_of_stock_good">
+                        <div class="good__info">
+                            <div class="good__img">
+                                <img src="./assets/images/good-1-bw.png" alt="">
+                            </div>
+                            <div class="good__details">
+                                <p class="good__title">
+                                    Футболка UZcotton мужская
+                                </p>
+                                <div class="good__parameters">
+                                    <p class="good__color">
+                                        Цвет: белый
+                                    </p>
+                                    <p class="good__size">
+                                        Размер: 56
+                                    </p>
+                                </div>
+                                <!-- <div class="good__seller">
+                                    <p>Коледино WB</p>
+                                    <div class="good__seller_name ">
+                                        OOO Вайлдберриз
+                                        <img src="./assets/icons/icon-20.svg" alt="">
+                                    </div>
+                                </div> -->
+                            </div>
+                            
+                        </div>
+                        <div class="good__order">
+                            <div class="good__quantity">
+                                <div class="good__action">
+                                    <div class="add_to_favorites">
+                                        <img src="./assets/icons/heart.svg" alt="">
+                                    </div>
+                                    <div class="remove">
+                                        <img src="./assets/icons/trash.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+            <section class="order_details">
+                <div class="order_delivery order_details__item">
+                    <div class="order_details__heading order_delivery__heading">
+                        <h2>
+                            Способ доставки
+                        </h2>
+                        <button class="order_details__change">
+                            Изменить
+                        </button>
+                    </div>
+
+                    <div class="order_delivery__info">
+                            <div class="emphasize">
+                                Пункт выдачи
+                            </div>
+                            <div class="order_delivery__adress">
+                                Бишкек, улица Ахматбека Суюмбаева, 12/1
+                            </div>
+                            <div class="emphasize">
+                                Стоимость доставки
+                            </div>
+                            <div class="order_delivery__sum">
+                                Бесплатно
+                            </div>
+                            <div class="delivery__dates_dates">
+                                5—6 февраля
+                            </div>
+                            <div class="delivery__dates_goods">
+                                <div class="delivery__dates_goods_item">
+                                    <img src="./assets/images/good-1.png" alt="">
+                                </div>
+                                <div class="delivery__dates_goods_item">
+                                    <img src="./assets/images/good-2.png" alt="">
+                                </div>
+                                <div class="delivery__dates_goods_item">
+                                    <img src="./assets/images/good-3.png" alt="">
+                                </div>
+                            </div>
+                            <div class="delivery__dates_dates">
+                                7—8 февраля
+                            </div>
+                            <div class="delivery__dates_goods">
+                                <div class="delivery__dates_goods_item">
+                                    <img src="./assets/images/good-2.png" alt="">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="order__refund">
+                        <div class="green-check">
+                            <img src="./assets/icons/green-check.svg" alt="">
+                        </div>
+                            <p>Обратная доставка товаров на склад при отказе — <span class="green-dashed">бесплатно</span></p>
+                    </div>
+                </div>
+                <div class="order_payment order_details__item">
+                    <div class="order_details__heading">
+                        <h2>
+                            Способ оплаты
+                        </h2>
+                        <button class="order_details__change">
+                            Изменить
+                        </button>
+                    </div>
+                    <div class="payment__card">
+                        <div class="payment__system">
+                            <img src="./assets/icons/mir.svg" alt="">
+                        </div>
+                        <div class="payment__card_number">
+                            1234 12•• •••• 1234
+                        </div>
+                        <div class="payment__card_expiry">
+                            01/30
+                        </div>
+                    </div>
+                    <div class="order_payment__warning">
+                        Спишем оплату с карты при получении
+                    </div>
+                </div>
+                <div class="order_buyer order_details__item">
+                    <div class="order_details__heading">
+                        <h2>
+                            Получатель
+                        </h2>
+                        
+                    </div>
+                    <form action="" class="customer_form">
+                        <div class="form__customer_name">
+                            <div class="customer_form__input_container">
+                                <input type="text" placeholder="Имя" class="customer_form__input">
+                                <p class="field_name" hidden>
+                                    Имя
+                                </p>
+                            </div>
+                            <div  class="customer_form__input_container">
+                                <input type="text" placeholder="Фамилия" class="customer_form__input">
+                                <p class="field_name" hidden>
+                                    Фамилия
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <div class="form__customer_contacts">
+                            <div  class="customer_form__input_container">
+                                <input type="text" placeholder="Почта" class="customer_form__input">
+                                <p class="field_name" hidden>
+                                    Почта
+                                </p>
+                            </div>
+                            <div  class="customer_form__input_container">
+                                <input type="text" placeholder="Телефон" class="customer_form__input" value="+7 (988) 123-45-67">
+                                <p class="field_name" hidden>
+                                    Телефон
+                                </p>
+                            </div>
+                            <div  class="customer_form__input_container">
+                                <input type="text" placeholder="ИНН" class="customer_form__input inn">
+                                <p class="inn_warning">
+                                    Для таможенного оформления
+                                </p>
+                                <p class="field_name" hidden>
+                                    ИНН
+                                </p>
+                            </div>
+                            
+                            
+                            
+
+                        </div>
+                    </form>
+
+                </div>
+                
+
+            </section>
+        </article>
+        <aside class="order_summary">
+            <div class="summary__heading">
+                <p>Итого</p>
+                <p class="summary__price">2 101 063 сом</p>
+            </div>
+            <div class="summary__info">
+                <div class="summary__goods">
+                    <table>
+                        <tr>
+                            <td class="td_left">4 товара</td>
+                            <td class="td_right">2 302 048 сом</td>
+                            
+                            
+                        </tr>
+                        <tr>
+                            <td class="td_left">Скидка</td>
+                            <td class="td_right">−200 985 сом</td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="td_left">Доставка</td>
+                            <td class="td_right">Бесплатно</td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="summary__delivery">
+                    <div class="summary__delivery_heading summary__item_heading desktop">
+                        Доставка в пункт выдачи
+                        <div class="change">
+                            <img src="./assets/icons/pencil.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="delivery__info">
+                        <div class="delivery__info_details desktop">
+                            <p class="delivery__adress">
+                                Бишкек, улица Ахматбека Суюмбаева, 12/1
+                            </p>
+                            <p class="delivery__date">
+                                5–8 фев
+                            </p>
+    
+
+                        </div>
+                        
+                        <div class="delivery__refusal">
+                            <div class="refusal__check">
+                                <img src="" alt="">
+                            </div>
+                            <div class="refusal__text">
+                                Обратная доставка товаров на склад при отказе — <span class="green-dashed">бесплатно</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+                <div class="summary__payment">
+                    <div class="summary__payment_heading summary__item_heading desktop">
+                        Оплата картой
+                        <div class="change">
+                            <img src="./assets/icons/pencil.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="payment___info">
+                        <div class="payment__card summary__payment desktop">
+                            <div class="payment__system">
+                                <img src="./assets/icons/mir.svg" alt="">
+                            </div>
+                            <div class="payment__card_number">
+                                1234 12•• •••• 1234
+                            </div>
+                        </div>
+                        <div class="payment__pay_now">
+                            <!-- <div class="pay_now__check">
+                                <input id="pay_now__check" type="checkbox">
+                                <label class="warning" for="pay_now__check">Списать оплату сразу</label>
+                            </div> -->
+                            <label class="pay_now__check checkbox_container">
+                                <input type="checkbox" name="pay_now" id="pay_now" class="checkbox">
+                                <span class="custom_checkbox"></span>
+                                Списать оплату сразу
+                            </label>
+                            <p class="pay_now__explanation">Спишем оплату с карты при получении</p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <button class="order_btn">
+                Заказать
+            </button>
+            <label class="agree_checkbox checkbox_container">
+                <input type="checkbox" name="agree" id="" class="checkbox">
+                <span class="custom_checkbox"></span>
+                Соглашаюсь с правилами пользования торговой площадкой и возврата
+            </label>
+            
+        </aside>
+
+    </main>
+    <footer class="page_footer">
+        <div class="footer__legal_name">
+            © 2022  ООО «Товары и точка»
+        </div>
+        
+
+    </footer>
+
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
