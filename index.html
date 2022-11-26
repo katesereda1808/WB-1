@@ -96,7 +96,7 @@
                         </label>
                     </div>
                     <div class="goods in_the_cart_goods">
-                        <div class="good" data-price="522">
+                        <div class="good">
                             <div class="good__info">
                                 <label class="good__checkbox checkbox_container">
                                     <input type="checkbox" name="good-1" id="" class="checkbox">
@@ -130,8 +130,8 @@
                                         </p>
                                     </div>
                                     <div class="good__seller">
-                                        <p>Коледино WB</p>
-                                            <div class="good__seller_name desktop">
+                                        <p class="good__seller_name">Коледино WB</p>
+                                            <div class="good__seller_legal_name desktop">
                                                 OOO Вайлдберриз
                                                 <img src="./assets/icons/icon-20.svg" alt="">
                                             </div>
@@ -146,9 +146,8 @@
                                             <div class="counter__decrease">
                                                 -
                                             </div>
-                                            <div class="counter__quantity">
-                                                1
-                                            </div>
+                                            <input class="counter__quantity" pattern="[1-9]\d*"/>
+                                        
                                             <div class="counter__increase">
                                                 +
                                             </div>
@@ -210,7 +209,6 @@
                                             Цвет: прозрачный
                                         </p>
                                         <p class="good__size">
-                                            <!-- Размер: 56 -->
                                         </p>
                                     </div>
                                     <div class="good__seller">
@@ -230,9 +228,8 @@
                                             <div class="counter__decrease">
                                                 -
                                             </div>
-                                            <div class="counter__quantity">
-                                                1
-                                            </div>
+                                            <input class="counter__quantity" pattern="[1-9]\d*"/>
+                                               
                                             <div class="counter__increase">
                                                 +
                                             </div>
@@ -294,12 +291,12 @@
                                         Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell 
                                     </p>
                                     <div class="good__parameters">
-                                        <!-- <p class="good__color">
-                                            Цвет: белый
+                                        <p class="good__color">
+                                         
                                         </p>
                                         <p class="good__size">
-                                            Размер: 56
-                                        </p> -->
+                                       
+                                        </p>
                                     </div>
                                     <div class="good__seller">
                                         <p>Коледино WB</p>
@@ -318,9 +315,8 @@
                                             <div class="counter__decrease">
                                                 -
                                             </div>
-                                            <div class="counter__quantity">
-                                                1
-                                            </div>
+                                            <input class="counter__quantity" pattern="[1-9]\d*"/>
+                                                
                                             <div class="counter__increase">
                                                 +
                                             </div>
@@ -626,7 +622,8 @@
         <aside class="order_summary">
             <div class="summary__heading">
                 <p>Итого</p>
-                <p class="summary__price">2 101 063 сом</p>
+                <p class="summary__price"><span class="summary__price_value">63</span> сом</p>
+                <!-- <p class="summary__price">2 101 063 сом</p> -->
             </div>
             <div class="summary__info">
                 <div class="summary__goods">
