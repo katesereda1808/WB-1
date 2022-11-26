@@ -4,6 +4,7 @@ const pay_btn = document.querySelector('.order_btn');
 const pay_now__checkbox = document.querySelector("#pay_now");
 const in_the_cart_goods = document.querySelector('.in_the_cart_goods').children;
 let totalSum = null;
+let totalWithoutDiscount = null;
 
 const goodsInCartArr = [
     {
@@ -18,7 +19,8 @@ const goodsInCartArr = [
         seller_legal_name: "OOO Вайлдберриз",
         quantity: 1,
         left_in_stock: "Осталось 2 шт.",
-        price_total: null
+        price_total: null,
+        price_old_total: null
 
     },
     {
@@ -32,7 +34,9 @@ const goodsInCartArr = [
         seller_name: "Коледино WB",
         seller_legal_name: "OOO Вайлдберриз",
         quantity: 200,
-        left_in_stock: ""
+        left_in_stock: "",
+        price_total: null,
+        price_old_total: null
 
     },
     
@@ -41,7 +45,6 @@ function loadGoods (goodsArr){
     const goodsContainer = document.querySelector(".in_the_cart_goods")
     goodsContainer.innerHTML = ''
     
-
     goodsArr.map((goodItem)=>{
         const goodLayout = document.createElement("div")
         goodLayout.className = "good"
@@ -124,174 +127,159 @@ function loadGoods (goodsArr){
             </div>
         </div>`;
         goodsContainer.appendChild(goodLayout);
-
-        // show total price of the goods of this type
         multiplyGoodsPrice (goodItem, goodLayout)
-
-        // add event listeners to counter
         animateCounter(goodItem, goodLayout);
-
-        // count total sum
         totalSum = countTotalGoodsSum(goodItem, totalSum)
     })
-    // console.log(totalSum)
+    console.log(totalSum)
     total.innerText = totalSum;
 }
 
-
 // срабатывает только 1 раз при первичной загрузке страницы
 function countTotalGoodsSum(goodItem, totalSum) {
-
+    // console.log(goodItem.price_total)
+    // console.log(totalSum)
     goodItem.price_total?
     totalSum+=goodItem.price_total:
     totalSum+=goodItem.price
     return totalSum
 }
 
-loadGoods(goodsInCartArr)
+loadGoods(goodsInCartArr);
 
 function animateCounter(goodObject, goodLayout) {
-    
-    // то, к чему привязываем слушатели событий
     let increase = goodLayout.querySelector(".counter__increase");
     let decrease = goodLayout.querySelector(".counter__decrease");
     let counter_input = goodLayout.querySelector(".counter__quantity");
-
     let quantity = goodObject.quantity;
 
-
-    increase.addEventListener("click", () => {
-        goodObject.quantity = ++quantity;
-
-        counter_input.value = quantity
-
-        // функция умножения цены на количество товара
-        multiplyGoodsPrice (goodObject, goodLayout)
-
-        // функция уВЕличения общей цены корзины при увеличении колич товара
-        totalSum = Math.ceil(totalSum + goodObject.price)
-        total.innerText = totalSum;
-
-        // менять текст в кнопке при изменении суммы
-        payNow() 
-     
-    })
-    decrease.addEventListener("click", () => {
-        if (quantity > 1){
-            
-            goodObject.quantity = --quantity;
-
-            counter_input.value = quantity;
-
-            // функция умножения цены на количество товара
-            multiplyGoodsPrice (goodObject, goodLayout)
-      
-            // функция уМЕньшения общей цены корзины при уменьшении колич товара
-            totalSum = Math.ceil(totalSum - goodObject.price)
-            total.innerText = totalSum;
-
-            // менять текст в кнопке при изменении суммы
-            payNow() 
-
-        }
-    })
-    
-
-    // counter_input.addEventListener('input', changeQuantity('input', goodObject, goodLayout)
-    counter_input.addEventListener('input', 
-    ()=>{
-        // работает, но нужно добавить 0
-        counter_input.value = counter_input.value.replace(/[^\d]/g, '');
-
-        goodObject.quantity = counter_input.value;
-
-        multiplyGoodsPrice (goodObject, goodLayout)
-
-        countTotalSum(goodsInCartArr);
-
-        payNow() 
-    }
-    )
+    increase.addEventListener("click", ()=>changeQuantity('increase', goodObject, goodLayout))
+    decrease.addEventListener("click", ()=>changeQuantity('decrease', goodObject, goodLayout))
+    counter_input.addEventListener('input', ()=>changeQuantity('input', goodObject, goodLayout))
 }
 
 // общая функция для всех событий
 function changeQuantity(operation, goodObject, goodLayout){
     let quantity = goodObject.quantity;
     let counter_input = goodLayout.querySelector(".counter__quantity");
-
-
     if (operation === 'input'){
         // работает, но нужно добавить 0
         counter_input.value = counter_input.value.replace(/[^\d]/g, '');
         goodObject.quantity = counter_input.value;
-    }
-    if(operation === 'increase'){
-        goodObject.quantity = ++quantity;
-        counter_input.value = quantity;
-    } else {
-        goodObject.quantity = --quantity;
-        counter_input.value = quantity;
-    }
-    // общее для всех
-    multiplyGoodsPrice (goodObject, goodLayout)
-    if (operation === 'input'){
+
+        // считаем и выводим общие суммы
+        multiplyGoodsPrice (goodObject, goodLayout);
         countTotalSum(goodsInCartArr);
-    }
-    if(operation === 'increase'){
-        totalSum = Math.ceil(totalSum + goodObject.price);
-        total.innerText = totalSum;
     } else {
-        totalSum = Math.ceil(totalSum - goodObject.price);
-        total.innerText = totalSum;
+        if(operation === 'increase'){
+            console.log('increase')
+            goodObject.quantity = ++quantity;
+            counter_input.value = quantity
+            //
+            multiplyGoodsPrice (goodObject, goodLayout)
+            totalSum = Math.ceil(totalSum + goodObject.price)
+            total.innerText = totalSum;
+        } else if(operation === 'decrease' && quantity > 1){
+            goodObject.quantity = --quantity;
+            counter_input.value = quantity;
+            //
+            multiplyGoodsPrice (goodObject, goodLayout)
+            totalSum = Math.ceil(totalSum - goodObject.price)
+            total.innerText = totalSum;
+        }
     }
-    // общее для всех
     payNow() 
 }
 
+
+// totalWithoutDiscount
 function countTotalSum(goods) {
     let prices = extractGoodsSums(goods);
     let commonSum = countSum(prices);
     totalSum = commonSum;
-    console.log(totalSum)
+    // console.log(totalSum)
     total.innerText = totalSum;
 }
 
+
+// function extractGoodsSums(goods, marker) {
+//     let sums = [];
+//     for (let i = 0; i < goods.length; i++) {
+//         let sum;
+//         if(marker === 'old'){
+//             sum = goods[i].price_old_total
+//         } else {
+//             sum = goods[i].price_total
+//         }
+//         sums.push(sum)
+//     }
+//     console.log(sums)
+//     return sums
+// }
 function extractGoodsSums(goods) {
-  
     let sums = [];
     for (let i = 0; i < goods.length; i++) {
         let sum;
-        /// c 0 не работает
-        // либо исключаем возможность написания 0
-        // либо включаем возможность 0
-        // первое кажется логичнее
-        goods[i].price_total?
-        sum = goods[i].price_total:
-        sum=goods[i].price
+        sum = goods[i].price_total
         sums.push(sum)
     }
     console.log(sums)
     return sums
 }
+
 function countSum(nums) {
     let result = nums.reduce(function (sum, num) {
         return sum + num;
     }, 0);
     return result
 }
+// function multyplyPrices (goodObject){
+//     let quantity;
+//     let price;
+//     let total;
+// }
+// function renderMultipliedPrices(goodLayout, goodObject){
+//     let prices = goodLayout.querySelectorAll('.price_sum')
+//     for (const price of prices) {
+//         price.innerText = multyplyPrices(goodObject)
+//     }
+// }
 
-// check quantity and multiply by price
 function multiplyGoodsPrice (goodObject, goodLayout) {
     let quantity = goodObject.quantity;
+    //
+
     let price = goodObject.price;
+    // -  -  -  -
+    // let old_price = goodObject.old_price;
+
     let sum = goodObject.price_total;
+     // -  -  -  -
+    // let old_sum = goodObject.price_old_total;
+
     sum = Math.ceil(quantity*price);
-    goodObject.price_total = sum
+     // -  -  -  -
+    // old_sum = Math.ceil(quantity*old_price);
+
+    goodObject.price_total = sum;
+     // -  -  -  -
+    // goodObject.price_old_total = old_sum;
+
+
+// --   ---    ----     ----     ----     ---
+
     let prices = goodLayout.querySelectorAll('.price_sum')
     for (const price of prices) {
         price.innerText = sum
     }
+     // -  -  -  -
+    //  let old_prices = goodLayout.querySelectorAll('.old_price')
+    //  for (const old_price of old_prices) {
+    //     old_price.innerText = sum
+    //  }
 }
+
+
 
 pay_now__checkbox.addEventListener("click", payNow)
 function payNow() {
