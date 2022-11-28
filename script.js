@@ -2,13 +2,14 @@
 let total = document.querySelector('.summary__price_value');
 let old_total = document.querySelector('.summary__old_price_value');
 let discount = document.querySelector('.discount_sum');
+let summary_quantity = document.querySelector('.summary__quantity')
 
-// console.log(old_total.innerText)
 const pay_btn = document.querySelector('.order_btn');
 const pay_now__checkbox = document.querySelector("#pay_now");
 const in_the_cart_goods = document.querySelector('.in_the_cart_goods').children;
 let totalSum = null;
 let totalSumWithoutDiscount = null;
+let totalQuantity = null;
 
 const adresses = [
 
@@ -24,8 +25,8 @@ const goodsInCartArr = [
         price: 522,
         old_price: 1051,
         title: "Футболка UZcotton мужская",
-        color: "Цвет: белый",
-        size: "Размер: 56",
+        color: "белый",
+        size: "56",
         seller_name: "Коледино WB",
         seller_legal_name: "OOO Вайлдберриз",
         quantity: 1,
@@ -40,8 +41,8 @@ const goodsInCartArr = [
         price: 10500.23,
         old_price: 11500.24,
         title: "Футболка UZcotton мужская",
-        color: "Цвет: белый",
-        size: "Размер: 56",
+        color: "белый",
+        size: "",
         seller_name: "Коледино WB",
         seller_legal_name: "OOO Вайлдберриз",
         quantity: 200,
@@ -63,6 +64,10 @@ function loadGoods (goodsArr){
             <label class="good__checkbox checkbox_container">
                 <input type="checkbox" name="${goodItem.id}" id="${goodItem.id}" class="checkbox good_checkbox" data-price="${goodItem.price}">
                 <span class="custom_checkbox"></span>
+                ${goodItem.size?
+                    `<span class="mobile size_indicator">${goodItem.size}</span>`:
+                ''}
+                
             </label>
             <div class="good__img">
                 <img src=${goodItem.img} alt="">
@@ -87,10 +92,14 @@ function loadGoods (goodsArr){
                 </p>
                 <div class="good__parameters">
                     <p class="good__color">
-                    ${goodItem.color}
+                    ${goodItem.color?
+                    'Цвет: '+goodItem.color:
+                    ''}
                     </p>
-                    <p class="good__size">
-                    ${goodItem.size}
+                    <p class="good__size desktop">
+                    ${goodItem.size?
+                        'Размер: '+ goodItem.size:
+                    ''}
                     </p>
                 </div>
                 <div class="good__seller">
@@ -120,10 +129,8 @@ function loadGoods (goodsArr){
                 </div>
                 <div class="good__action">
                     <div class="add_to_favorites">
-                        <img src="./assets/icons/heart.svg" alt="">
                     </div>
                     <div class="remove">
-                        <img src="./assets/icons/trash.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -143,7 +150,7 @@ function loadGoods (goodsArr){
             </div>
         </div>`;
         goodsContainer.appendChild(goodLayout);
-
+// 
         multiplyGoodsPrice (goodItem, goodLayout)
    
         animateCounter(goodItem, goodLayout);
@@ -151,17 +158,12 @@ function loadGoods (goodsArr){
         totalSum = countTotalGoodsSum(goodItem, totalSum, '');
         totalSumWithoutDiscount = countTotalGoodsSum(goodItem, totalSumWithoutDiscount, 'old_');
     })
-
+    renderGoodsQuantity(goodsInCartArr)
     // запись в разметку общей цены, цены без скидки и разницы
-    // total.innerText = totalSum;
+
     renderValue(total, totalSum)
-
-    // old_total.innerText = totalSumWithoutDiscount;
     renderValue(old_total, totalSumWithoutDiscount)
-
-    // discount.innerText = totalSumWithoutDiscount - totalSum;
     renderValue(discount, (totalSumWithoutDiscount - totalSum))
-
 }
 
 // срабатывает только 1 раз при первичной загрузке страницы
@@ -182,7 +184,9 @@ function animateCounter(goodObject, goodLayout) {
     counter_input.addEventListener('input', ()=>changeQuantity('input', goodObject, goodLayout))
 }
 
-// общая функция для всех событий
+
+
+
 function changeQuantity(operation, goodObject, goodLayout){
     let quantity = goodObject.quantity;
     let counter_input = goodLayout.querySelector(".counter__quantity");
@@ -194,6 +198,9 @@ function changeQuantity(operation, goodObject, goodLayout){
         multiplyGoodsPrice (goodObject, goodLayout);
         countTotalSum(goodsInCartArr, '');
         countTotalSum(goodsInCartArr, 'old_');
+        //
+        renderGoodsQuantity(goodsInCartArr)
+        //
         renderValue(discount, (totalSumWithoutDiscount - totalSum))
      
     } else {
@@ -204,11 +211,16 @@ function changeQuantity(operation, goodObject, goodLayout){
             multiplyGoodsPrice (goodObject, goodLayout)
             
             totalSum = Math.ceil(totalSum + goodObject.price)
-            
             renderValue(total, totalSum)
+
+            // то же самое только с количеством товаров
+            // туть
+            totalQuantity++
+            renderValue(summary_quantity, totalQuantity);
+            ////
             
             totalSumWithoutDiscount = Math.ceil(totalSumWithoutDiscount + goodObject.old_price)
-       
+        
             renderValue(old_total, totalSumWithoutDiscount)
      
             renderValue(discount, (totalSumWithoutDiscount - totalSum))
@@ -222,6 +234,12 @@ function changeQuantity(operation, goodObject, goodLayout){
             totalSum = Math.ceil(totalSum - goodObject.price)
             
             renderValue(total, totalSum)
+
+            // то же самое только с количеством товаров
+            // туть
+            totalQuantity--
+            renderValue(summary_quantity, totalQuantity);
+            ////
             
             totalSumWithoutDiscount = Math.ceil(totalSumWithoutDiscount - goodObject.old_price)
             
@@ -233,7 +251,7 @@ function changeQuantity(operation, goodObject, goodLayout){
     }
     payNow() 
 }
-//////////????????????????????+-+-+-+-
+//////////?
 function count(operation){
     goodObject.quantity = ++quantity;
     counter_input.value = quantity;
@@ -255,8 +273,15 @@ function renderValue(place, value){
     place.innerHTML = value
 }
 
+
+function renderGoodsQuantity(goods){
+    let goodsQuantityArr = extractGoodsSums(goods, 'quantity');
+    totalQuantity = countSum(goodsQuantityArr);
+    renderValue(summary_quantity, totalQuantity);
+}
+
 function countTotalSum(goods, marker) {
-    let prices = extractGoodsSums(goods, marker);
+    let prices = extractGoodsSums(goods, `${marker}price_total`);
     let commonSum = countSum(prices);
     if(marker === 'old_'){
         totalSumWithoutDiscount = commonSum;
@@ -267,16 +292,17 @@ function countTotalSum(goods, marker) {
     }
 }
 
-function extractGoodsSums(goods, marker) {
+function extractGoodsSums(goods, field) {
     let sums = [];
     for (let i = 0; i < goods.length; i++) {
         let sum;
-        sum = goods[i][`${marker}price_total`]
+        sum = +(goods[i][field])
         sums.push(sum)
     }
     console.log(sums)
     return sums
 }
+
 
 function countSum(nums) {
     let result = nums.reduce(function (sum, num) {
@@ -312,6 +338,9 @@ function payNow() {
     }
 }
 
+
+
+
 // чекбоксы
 let cart = document.querySelector('.cart');
 let check_all = cart.querySelector('#check_all');
@@ -331,8 +360,33 @@ function changeAllCheckboxes(checkboxes, checkAll){
 }
 
 
-// change_delivery
-// change_payment
+
 const change_delivery = document.querySelector('.change_delivery');
+const summary__delivery_change = document.querySelector('.summary__delivery_change');
+
 const change_payment = document.querySelector('.change_payment');
-console.log(change_delivery);
+const summary__payment_change = document.querySelector('.summary__payment_change');
+
+const payment_popup = document.querySelector('.payment_popup');
+const delivery_popup = document.querySelector('.delivery_popup');
+
+const payment_popup__close = document.querySelector('.payment_popup__close');
+const delivery_popup__close = document.querySelector('.delivery_popup__close');
+
+
+change_delivery.addEventListener('click',()=>popupToggle('delivery', 'open'));
+summary__delivery_change.addEventListener('click',()=>popupToggle('delivery', 'open'));
+delivery_popup__close.addEventListener('click',()=>popupToggle('delivery', 'close'));
+
+
+
+change_payment.addEventListener('click',()=>popupToggle('payment', 'open'));
+summary__payment_change.addEventListener('click',()=>popupToggle('payment', 'open'));
+payment_popup__close.addEventListener('click',()=>popupToggle('payment', 'close'));
+
+function popupToggle(marker, action){
+    let popup = document.querySelector(`.${marker}_popup`);
+    action === 'open'?
+    popup.hidden = false:
+    popup.hidden = true;
+}
