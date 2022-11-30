@@ -1038,6 +1038,23 @@ details>summary {
     display: none;
 }
 
+.invalid .customer_form__input,
+.empty .customer_form__input {
+    color: #F55123;
+    border-bottom: 1px solid #F55123;
+}
+.error.long_msg {
+    bottom: -15px;
+}
+.error {
+    font-size: 12px;
+    font-weight: 400;
+    color: #F55123;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
 @media (max-width:900px) {
     .mobile {
         display: flex;

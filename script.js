@@ -8,8 +8,8 @@ const pay_btn = document.querySelector('.order_btn');
 const pay_now__checkbox = document.querySelector("#pay_now");
 const in_the_cart_goods = document.querySelector('.in_the_cart_goods').children;
 
-let totalSum = null;
-let totalSumWithoutDiscount = null;
+let totalSum = 0;
+let totalSumWithoutDiscount = 0;
 let totalQuantity = null;
 
 const goodsInCartArr = [
@@ -104,6 +104,7 @@ function changeAllCheckboxes(goodsArr, checkAll) {
     }
     processAllPrices()
 }
+
 function loadGoods(goodsArr) {
     const goodsContainer = document.querySelector(".in_the_cart_goods")
     goodsContainer.innerHTML = ''
@@ -246,7 +247,6 @@ function loadGoods(goodsArr) {
     renderValue(discount, (totalSumWithoutDiscount - totalSum))
 }
 
-// срабатывает только 1 раз при первичной загрузке страницы
 function countTotalGoodsSum(goodItem, totalSum, marker) {
     totalSum += goodItem[`${marker}price_total`]
     return totalSum
@@ -383,58 +383,86 @@ function popupToggle(marker, action) {
         popup.hidden = true;
 }
 
-
-
-/////////////////////////
-// tooltips
 let tooltipContainers = document.querySelectorAll('.tooltip-container');
 for (let i = 0; i < tooltipContainers.length; i++) {
     const container = tooltipContainers[i];
-    console.log(container)
     let tooltip = container.querySelector('.tooltip');
-    container.addEventListener('mouseover', ()=>{
-        console.log('mouseover')
+    container.addEventListener('mouseover', () => {
         tooltip.classList.remove('hidden')
     })
-    container.addEventListener('mouseout', ()=>{
+    container.addEventListener('mouseout', () => {
         tooltip.classList.add('hidden')
     })
 }
 
-
-// form
-// Пустое поле становится ошибочным, если пользователь нажал кнопку «Оформить заказ». В таком случае мы подсвечиваем незаполненное поле, просим заполнить его, а на мобильных подкручиваем к нему по нажатию на кнопку Оплатить.
-
-// после того, как пользователь нажал кнопку и появилась ошибка
-
-// 5) Как только пользователь ввёл что-то, что удаётся провалидировать, мы убираем ошибку. То есть триггером для валидации является ввод с клавиатуры.
-
 const customerForm = document.querySelector('.customer_form');
-const form_name = customerForm.querySelector('input[name="name"]');
-const form_surname = customerForm.querySelector('input[name="surname"]');
 const form_pnoneNumber = customerForm.querySelector('input[name="phone_number"]');
-const form_inn = customerForm.querySelector('input[name="inn"]');
-// const form_zipCode = customerForm.querySelector('input[name="zipCode"]');
-// console.log(form_surname)
-// function validateInputs() {
-// }
-form_pnoneNumber.addEventListener('input',(e)=>{
+
+form_pnoneNumber.addEventListener('keyup', (e) => {
     let s = e.target.value;
-    console.log(s)
     e.target.value = s.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 })
 
+let phoneInputs = document.querySelectorAll('input[name="phone_number"]');
+
+let getInputNumbersValue = function (input) {
+    return input.value.replace(/\D/g, "")
+}
+
+let onPhoneInput = function (e) {
+    let input = e.target;
+    let inputNumbersValue = getInputNumbersValue(input);
+    let formattedInputValue = "";
+    let selectionStart = input.selectionStart;
+    if (!inputNumbersValue) {
+        return input.value = "";
+    }
+    if (input.value.length != selectionStart) {
+        if (e.data) {
+            input.value = inputNumbersValue;
+        }
+        return
+    }
+    if (["7", "8"].indexOf(inputNumbersValue[0]) > -1) {
+        let firstSymbols = (inputNumbersValue[0] == "8") ? "8" : "+7";
+        formattedInputValue = firstSymbols + " ";
+        if (inputNumbersValue.length > 1) {
+            formattedInputValue += " " + inputNumbersValue.substring(1, 4);
+        }
+        if (inputNumbersValue.length >= 5) {
+            formattedInputValue += " " + inputNumbersValue.substring(4, 7);
+        }
+        if (inputNumbersValue.length >= 8) {
+            formattedInputValue += " " + inputNumbersValue.substring(7, 9);
+        }
+        if (inputNumbersValue.length >= 10) {
+            formattedInputValue += " " + inputNumbersValue.substring(9, 11);
+        }
+    }
+    else {
+        formattedInputValue = "+" + inputNumbersValue.substring(0, 16)
+    }
+    input.value = formattedInputValue;
+}
+function onPhoneKeydown(e) {
+    let input = e.target;
+    if (e.keyCode == 8 && getInputNumbersValue(input).length == 1) {
+        input.value = "";
+    }
+}
+
+for (let i = 0; i < phoneInputs.length; i++) {
+    let input = phoneInputs[i];
+    input.addEventListener("input", onPhoneInput);
+    input.addEventListener("keydown", onPhoneKeydown);
+}
+
 let regName = /^[a-zа-яё]+$/i;
-// let regPhone = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,30}(\s*)?$/;
-let regPhone = /(?:\+)[\d\-\(\) ]{9,30}\d/g;
+let regPhone = /^[\+\(]{0,1}[\d]+[a-z\(\)\-\+\s]*/ig;
 let regEmail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
+
 /// в тз описана валидация только индекса
 let regInn = /^\d{1,10}$/;
-
-
-
-
-
 
 //Алгоритм проверки ИНН 10 знаков:
 // Вычисляется контрольная сумма со следующими весовыми коэффициентами: (2,4,10,3,5,9,4,6,8,0)
@@ -457,13 +485,9 @@ let regInn = /^\d{1,10}$/;
 // пример верного ИНН: 6167109768
 // console.log(is_valid_inn(6167109768));
 
-
-function clearWarning(input, flag) {
+function clearWarning(input) {
     let inputContainer = input.parentElement;
     inputContainer.classList.remove('invalid');
-    flag == 'valid' ?
-        inputContainer.children[1].src = 'images/check.svg' :
-        inputContainer.children[1].src = 'images/arrow.svg';
     Array.from(inputContainer.children).map((el) => {
         if (el.classList.contains('error')) {
             el.remove();
@@ -474,25 +498,42 @@ function validate(regex, str) {
     return regex.test(str);
 };
 
-function handleValidation(regEx, str) {
-    let inputContainer = str.parentElement;
-    if (!validate(regEx, str.value)) {
-        console.log(str)
+function handleValidation(regEx, input) {
+    let inputContainer = input.parentElement;
+    let warning = inputContainer.querySelector('.inn_warning');
+    if (!validate(regEx, input.value)) {
         if (!inputContainer.classList.contains('invalid')) {
             inputContainer.classList.add('invalid');
             inputContainer.children[1].src = 'images/red-cross.svg';
             let p = document.createElement('p');
             p.className = 'error';
-            p.innerText = 'Попробуйте еще раз';
+            switch (input.name) {
+                case 'email':
+                    p.classList.add('long_msg')
+                    p.innerText = 'Проверьте адрес электронной почты';
+                    break;
+                case 'phone_number':
+                    p.innerText = 'Формат: +9 999 999 99 99';
+                    break;
+                case 'inn':
+                    warning.classList.add('hidden');
+                    p.innerText = 'Формат: 1234567';
+                    break;
+                default:
+                    break;
+            }
             inputContainer.appendChild(p);
         };
     } else {
-        clearWarning(str, 'valid');
+        if (input.name === 'inn') {
+            warning.classList.remove('hidden');
+        }
+        clearWarning(input);
     };
 };
 
 let inputs = customerForm.querySelectorAll('input')
-customerForm.addEventListener('submit', onSubmit)
+customerForm.addEventListener('submit', (e) => onSubmit(e))
 function onSubmit(e) {
     e.preventDefault();
     for (let i = 0; i < inputs.length; i++) {
@@ -502,31 +543,59 @@ function onSubmit(e) {
                 inputContainer.classList.add('empty');
                 let p = document.createElement('p');
                 p.className = 'error';
-                p.innerText = 'Попробуйте еще раз';
+                switch (inputs[i].name) {
+                    case 'name':
+                        p.innerText = 'Укажите имя';
+                        break;
+                    case 'surname':
+                        p.innerText = 'Введите фамилию';
+                        break;
+                    case 'email':
+                        p.innerText = 'Укажите электронную почту';
+                        break;
+                    case 'phone_number':
+                        p.innerText = 'Укажите номер телефона';
+                        break;
+                    case 'inn':
+                        let warning = inputContainer.querySelector('.inn_warning');
+                        warning.classList.add('hidden');
+                        p.innerText = 'Укажите ИНН';
+                        break;
+                    default:
+                        p.innerText = 'Поле не должно оставаться пустым';
+                        break;
+                }
                 inputContainer.appendChild(p);
             };
         } else {
-            clearWarning(inputs[i], 'valid');
+            let error_msg = inputContainer.querySelector('.error');
+            if (error_msg) {
+                error_msg.remove();
+            }
+            inputContainer.classList.remove('invalid');
+            let warning = inputContainer.querySelector('.inn_warning');
+            if (warning) {
+                warning.classList.remove('hidden');
+            }
+            clearWarning(inputs[i]);
+            validateInput(inputs[i])
         }
     }
 }
 
 for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
-    input.addEventListener('blur', (e) => validateInput(e))
+    input.addEventListener('blur', () => validateInput(input))
 }
-function validateInput(e) {
-    console.log('something')
-    e.preventDefault();
-    let input = e.target;
+
+function validateInput(input) {
+    input.addEventListener('input', () => validateInput(input))
     if (input.value) {
         let regEx;
         switch (input.name) {
             case 'name':
-                // regEx = regName;
                 break;
             case 'surname':
-                // regEx = regName;
                 break;
             case 'phone_number':
                 regEx = regPhone;
@@ -543,18 +612,3 @@ function validateInput(e) {
         };
     }
 };
-
-// почта - валидация, Текст ошибки «Проверьте адрес электронной почты»
-// Текст для незаполненного поля «Укажите электронную почту»
-
-// Телефон
-// Проверяем по существующему алгоритму, просим проверить формат номера. Добавляем пробелы между группами цифр, чтобы удобнее было считывать номер. Ограничиваем количество символов до 30 на случай копипаста со скобками. Не разрешаем вводить буквы.
-// Текст ошибки «Формат: +9 999 999 99 99»
-// Текст для незаполненного поля «Укажите номер телефона»
-
-
-//   inputs[i].value = inputs[i].value.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-let strs = ['1000,999', '10000.99', '1000000'];
-for (let s of strs) {
-    console.log(s.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "))
-}
