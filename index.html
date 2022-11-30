@@ -86,15 +86,17 @@
         <article>
             <section class="cart">
                 <h2 class="section_title">Корзина</h2>
-                <div class="cart__in_the_cart">
-                    <div class="cart__check_all">
+                <details class="cart__in_the_cart">
+                    <summary class="cart__check_all">
                         <label class="check_all__label checkbox_container" for="check_all">
                             <input id="check_all" type="checkbox" class="checkbox">
 
                             <span class="custom_checkbox"></span>
                             Выбрать все
+                            
                         </label>
-                    </div>
+                        <div class="chevron"></div>
+                    </summary>
                     <div class="goods in_the_cart_goods">
                         <div class="good">
                             <div class="good__info">
@@ -147,7 +149,7 @@
                                             <div class="counter__decrease">
                                                 -
                                             </div>
-                                            <input class="counter__quantity" pattern="[1-9]\d*" />
+                                            <input class="counter__quantity"/>
 
                                             <div class="counter__increase">
                                                 +
@@ -160,10 +162,8 @@
                                     </div>
                                     <div class="good__action">
                                         <div class="add_to_favorites">
-                                            <img src="./assets/icons/heart.svg" alt="">
                                         </div>
                                         <div class="remove">
-                                            <img src="./assets/icons/trash.svg" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -230,23 +230,18 @@
                                             <div class="counter__decrease">
                                                 -
                                             </div>
-                                            <input class="counter__quantity" pattern="[1-9]\d*" />
-
+                                            <input class="counter__quantity"/>
                                             <div class="counter__increase">
                                                 +
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="good__in_stock">
-
                                     </div>
                                     <div class="good__action">
                                         <div class="add_to_favorites">
-                                            <img src="./assets/icons/heart.svg" alt="">
                                         </div>
                                         <div class="remove">
-                                            <img src="./assets/icons/trash.svg" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -260,10 +255,7 @@
                                     <div class="old_price">
                                         2 300 047 сом
                                     </div>
-
-
                                 </div>
-
                             </div>
                         </div>
                         <div class="good" data-price="247">
@@ -281,13 +273,11 @@
                                             <span class="price_sum">
                                                 494
                                             </span>
-
                                             <span class="price_cur">сом</span>
                                         </div>
                                         <div class="old_price">
                                             950 сом
                                         </div>
-
                                     </div>
                                     <p class="good__title">
                                         Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные,
@@ -295,10 +285,8 @@
                                     </p>
                                     <div class="good__parameters">
                                         <p class="good__color">
-
                                         </p>
                                         <p class="good__size">
-
                                         </p>
                                     </div>
                                     <div class="good__seller">
@@ -309,7 +297,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="good__order">
                                 <div class="good__quantity">
@@ -318,12 +305,10 @@
                                             <div class="counter__decrease">
                                                 -
                                             </div>
-                                            <input class="counter__quantity" pattern="[1-9]\d*" />
-
+                                            <input class="counter__quantity"/>
                                             <div class="counter__increase">
                                                 +
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="good__in_stock">
@@ -331,10 +316,8 @@
                                     </div>
                                     <div class="good__action">
                                         <div class="add_to_favorites">
-                                            <img src="./assets/icons/heart.svg" alt="">
                                         </div>
                                         <div class="remove">
-                                            <img src="./assets/icons/trash.svg" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -343,7 +326,6 @@
                                         <span class="price_sum">
                                             494
                                         </span>
-
                                         <span class="price_cur">сом</span>
                                     </div>
                                     <div class="old_price">
@@ -351,22 +333,19 @@
                                             950
                                         </span>
                                         <span class="price_cur">сом</span>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-                </div>
-
-
+                </details>
             </section>
             <section class="cart__out_of_stock">
-                <h2 class="section_title">Отсутствуют · 3 товара</h2>
-                <div class="goods out_of_stock_goods">
+                <details class="goods out_of_stock_goods">
+                    <summary>
+                        <h2 class="section_title">Отсутствуют · 3 товара</h2>
+                        <div class="chevron"></div>
+                    </summary>
                     <div class="good out_of_stock_good">
                         <div class="good__info">
                             <div class="good__img">
@@ -384,24 +363,14 @@
                                         Размер: 56
                                     </p>
                                 </div>
-                                <!-- <div class="good__seller">
-                                    <p>Коледино WB</p>
-                                    <div class="good__seller_name desktop">
-                                        OOO Вайлдберриз
-                                        <img src="./assets/icons/icon-20.svg" alt="">
-                                    </div>
-                                </div> -->
                             </div>
-
                         </div>
                         <div class="good__order">
                             <div class="good__quantity">
                                 <div class="good__action">
                                     <div class="add_to_favorites">
-                                        <img src="./assets/icons/heart.svg" alt="">
                                     </div>
                                     <div class="remove">
-                                        <img src="./assets/icons/trash.svg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -410,38 +379,27 @@
                     <div class="good out_of_stock_good">
                         <div class="good__info">
                             <div class="good__img">
-                                <img src="./assets/images/good-1-bw.png" alt="">
+                                <img src="./assets/images/good-2-bw.png" alt="">
                             </div>
                             <div class="good__details">
                                 <p class="good__title">
-                                    Футболка UZcotton мужская
+                                    Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe
                                 </p>
                                 <div class="good__parameters">
                                     <p class="good__color">
-                                        Цвет: белый
+                                        Цвет: прозрачный
                                     </p>
                                     <p class="good__size">
-                                        Размер: 56
                                     </p>
                                 </div>
-                                <!-- <div class="good__seller">
-                                    <p>Коледино WB</p>
-                                    <div class="good__seller_name desktop">
-                                        OOO Вайлдберриз
-                                        <img src="./assets/icons/icon-20.svg" alt="">
-                                    </div>
-                                </div> -->
                             </div>
-
                         </div>
                         <div class="good__order">
                             <div class="good__quantity">
                                 <div class="good__action">
                                     <div class="add_to_favorites">
-                                        <img src="./assets/icons/heart.svg" alt="">
                                     </div>
                                     <div class="remove">
-                                        <img src="./assets/icons/trash.svg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -450,46 +408,32 @@
                     <div class="good out_of_stock_good">
                         <div class="good__info">
                             <div class="good__img">
-                                <img src="./assets/images/good-1-bw.png" alt="">
+                                <img src="./assets/images/good-3-bw.png" alt="">
                             </div>
                             <div class="good__details">
                                 <p class="good__title">
-                                    Футболка UZcotton мужская
+                                    Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell 
                                 </p>
                                 <div class="good__parameters">
                                     <p class="good__color">
-                                        Цвет: белый
                                     </p>
                                     <p class="good__size">
-                                        Размер: 56
                                     </p>
                                 </div>
-                                <!-- <div class="good__seller">
-                                    <p>Коледино WB</p>
-                                    <div class="good__seller_name ">
-                                        OOO Вайлдберриз
-                                        <img src="./assets/icons/icon-20.svg" alt="">
-                                    </div>
-                                </div> -->
                             </div>
-
                         </div>
                         <div class="good__order">
                             <div class="good__quantity">
                                 <div class="good__action">
                                     <div class="add_to_favorites">
-                                        <!-- <img src="./assets/icons/heart.svg" alt=""> -->
                                     </div>
                                     <div class="remove">
-                                        <!-- <img src="./assets/icons/trash.svg" alt=""> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-
+                </details>
             </section>
             <section class="order_details">
                 <div class="order_delivery order_details__item">
@@ -533,9 +477,15 @@
                             </div>
                             <div class="delivery__dates_goods_item">
                                 <img src="./assets/images/good-2.png" alt="">
+                                <div class="delivery__goods_item_quantity">
+                                    184
+                                </div>
                             </div>
                             <div class="delivery__dates_goods_item">
                                 <img src="./assets/images/good-3.png" alt="">
+                                <div class="delivery__goods_item_quantity">
+                                    2
+                                </div>
                             </div>
                         </div>
                         <div class="delivery__dates_dates">
@@ -551,7 +501,7 @@
                         <div class="green-check">
                             <img src="./assets/icons/green-check.svg" alt="">
                         </div>
-                        <p>Обратная доставка товаров на склад при отказе — <span class="green-dashed">бесплатно</span>
+                        <p>Обратная доставка товаров на склад при отказе — <span class="green-dashed free-delivery" data-tooltip="Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно">бесплатно</span>
                         </p>
                     </div>
                 </div>
@@ -586,16 +536,16 @@
                         </h2>
 
                     </div>
-                    <form action="" class="customer_form">
+                    <form action="" class="customer_form" id="customer-form">
                         <div class="form__customer_name">
                             <div class="customer_form__input_container">
-                                <input type="text" placeholder="Имя" class="customer_form__input">
+                                <input type="text" placeholder="Имя" class="customer_form__input" name="name">
                                 <p class="field_name" hidden>
                                     Имя
                                 </p>
                             </div>
                             <div class="customer_form__input_container">
-                                <input type="text" placeholder="Фамилия" class="customer_form__input">
+                                <input type="text" placeholder="Фамилия" class="customer_form__input" name="surname">
                                 <p class="field_name" hidden>
                                     Фамилия
                                 </p>
@@ -604,20 +554,20 @@
                         </div>
                         <div class="form__customer_contacts">
                             <div class="customer_form__input_container">
-                                <input type="text" placeholder="Почта" class="customer_form__input">
+                                <input type="text" placeholder="Почта" class="customer_form__input" name="email">
                                 <p class="field_name" hidden>
                                     Почта
                                 </p>
                             </div>
                             <div class="customer_form__input_container">
                                 <input type="text" placeholder="Телефон" class="customer_form__input"
-                                    value="+7 (988) 123-45-67">
+                                    value="" name="phone_number">
                                 <p class="field_name" hidden>
                                     Телефон
                                 </p>
                             </div>
                             <div class="customer_form__input_container">
-                                <input type="text" placeholder="ИНН" class="customer_form__input inn">
+                                <input type="text" placeholder="ИНН" class="customer_form__input inn" name="inn">
                                 <p class="inn_warning">
                                     Для таможенного оформления
                                 </p>
@@ -625,15 +575,9 @@
                                     ИНН
                                 </p>
                             </div>
-
-
-
-
                         </div>
                     </form>
-
                 </div>
-
             </section>
 
             <div class="payment_popup popup" hidden="true">
@@ -811,11 +755,11 @@
 
                         <div class="delivery__refusal">
                             <div class="refusal__check">
-                                <img src="" alt="">
+                                <img src="./assets/icons/green-check.svg" alt="">
                             </div>
                             <div class="refusal__text">
                                 Обратная доставка товаров на склад при отказе — <span
-                                    class="green-dashed">бесплатно</span>
+                                    class="green-dashed free-delivery" data-tooltip="Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно">бесплатно</span>
                             </div>
                         </div>
 
@@ -856,7 +800,7 @@
                 </div>
 
             </div>
-            <button class="order_btn button">
+            <button class="order_btn button" type="submit" form="customer-form">
                 Заказать
             </button>
             <label class="agree_checkbox checkbox_container">
