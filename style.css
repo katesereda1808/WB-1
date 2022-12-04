@@ -134,6 +134,7 @@ body {
     font-style: normal;
     font-size: 16;
     font-weight: 400;
+    min-width: 320px;
 }
 
 header,
