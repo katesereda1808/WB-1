@@ -1287,6 +1287,31 @@ details>summary {
     bottom: 0;
 }
 
+@media (max-width: 1400px) {
+    .order_summary {
+        width: 624px;
+        padding-right: 26px;
+        padding-left: 21px;
+    }
+
+    .order_summary .order_btn {
+        max-width: none;
+        width: 100%;
+    }
+
+    .agree_checkbox {
+        max-width: 381px;
+    }
+
+    .tablet {
+        display: none;
+    }
+
+    .customer_form {
+        max-width: 700px;
+    }
+}
+
 @media (max-width:900px) {
     .mobile {
         display: flex;
