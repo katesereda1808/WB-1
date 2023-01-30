@@ -51,7 +51,7 @@ const goodsInCartArr = [
         img: "./assets/images/good-3.png",
         price: 494,
         old_price: 950,
-        title: "Карандаши цветные Faber-Castell \"Замок\", набор 24 цвета, заточенные, шестигранные, Faber-Castell",
+        title: "Карандаши цветные Faber-Castell \"Замок\", набор 24 цвета, заточенные, шестигранные,<br> Faber-Castell",
         color: "",
         size: "",
         seller_name: "Коледино WB",
@@ -115,11 +115,15 @@ function loadGoods(goodsArr) {
         goodLayout.innerHTML = `
         <div class="good__info">
             <label class="good__checkbox checkbox_container">
-                <input type="checkbox" name="${goodItem.id}" id="${goodItem.id}" class="checkbox good_checkbox" data-price="${goodItem.price}">
+                <input type="checkbox" name="${goodItem.id}" id="${
+          goodItem.id
+        }" class="checkbox good_checkbox" data-price="${goodItem.price}">
                 <span class="custom_checkbox"></span>
-                ${goodItem.size ?
-                `<span class="mobile size_indicator">${goodItem.size}</span>` :
-                ''}
+                ${
+                  goodItem.size
+                    ? `<span class="mobile size_indicator">${goodItem.size}</span>`
+                    : ""
+                }
             </label>
             <div class="good__img">
                 <img src=${goodItem.img} alt="">
@@ -136,7 +140,7 @@ function loadGoods(goodsArr) {
                         <span  class="old_price_sum">
                         ${goodItem.old_price}
                         </span>
-                        <span class="price_cur">сом</span>
+                        <span class="old_price_cur">сом</span>
                         <div class="tooltip tooltip-discount hidden">
                                     <div>
                                         <p class="text-gray">Скидка 55%</p>
@@ -152,16 +156,14 @@ function loadGoods(goodsArr) {
                 <p class="good__title">
                     ${goodItem.title}
                 </p>
-                <div class="good__parameters">
+                <div class="good__parameters ${
+                  (!goodItem.color && !goodItem.size)?'hidden':''
+                }">
                     <p class="good__color">
-                    ${goodItem.color ?
-                'Цвет: ' + goodItem.color :
-                ''}
+                    ${goodItem.color ? "Цвет: " + goodItem.color : ""}
                     </p>
                     <p class="good__size desktop">
-                    ${goodItem.size ?
-                'Размер: ' + goodItem.size :
-                ''}
+                    ${goodItem.size ? "Размер: " + goodItem.size : ""}
                     </p>
                 </div>
                 <div class="good__seller tooltip-container">
@@ -189,9 +191,11 @@ function loadGoods(goodsArr) {
                 <div class="good__added">
                     <div class="counter">
                         <div class="counter__decrease">
-                            -
+                            −
                         </div>
-                        <input class="counter__quantity" value= "${goodItem.quantity}"/>
+                        <input class="counter__quantity" value= "${
+                          goodItem.quantity
+                        }"/>
                         <div class="counter__increase">
                             +
                         </div>
@@ -218,7 +222,7 @@ function loadGoods(goodsArr) {
                     <span  class="old_price_sum">
                     ${goodItem.old_price}
                     </span>
-                    <span class="price_cur">сом</span>
+                    <span class="old_price_cur">сом</span>
                     <div class="tooltip tooltip-discount hidden">
                                     <div>
                                         <p class="text-gray">Скидка 55%</p>

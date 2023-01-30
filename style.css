@@ -132,7 +132,7 @@ select {
 body {
     font-family: 'Segoe UI';
     font-style: normal;
-    font-size: 16;
+    /* font-size: 16px; */
     font-weight: 400;
     min-width: 320px;
 }
@@ -147,22 +147,35 @@ main {
     background-color: #F6F6FA;
     justify-content: space-between;
     display: flex;
-    padding: 0 24px 16px;
+    padding: 0 24px 27px;
     position: relative;
 }
 
 .page_footer {
     position: relative;
-    padding: 48px 24px 24px;
+    padding: 46px 24px 24px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.footer__legal_name {
+.footer__legal {
     font-size: 13px;
     font-weight: 400;
+    line-height: 16px;
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
+    word-spacing: 1px;
+    letter-spacing: -0.2px;
+}
+
+.footer__legal_name {
+    margin-left: 4px;
+}
+
+.footer__legal_date {
+    margin-left: -1px;
+    /* margin-right: 6px; */
 }
 
 .page_header {
@@ -176,15 +189,18 @@ main {
     justify-content: space-between;
     align-items: center;
 }
+
 .header__nav_icon p {
     /* margin-top: -10px; */
     display: block;
     line-height: 16px;
     margin-top: -10px;
 }
+
 .header__nav_icon img {
     height: 28px;
 }
+
 .nav_icon__cart {
     margin-right: -4px;
    
@@ -192,6 +208,7 @@ main {
     /* height: 35px;
     margin-top: -3px; */
 }
+
 .nav_icon__profile {
     /* height: 30px;
     margin-top: 0.5px; */
@@ -201,11 +218,12 @@ main {
     height: 36px;
     margin-top: -6px;
     margin-bottom: 3px;
-    
 }
+
 .nav_icon__cart p {
     margin-left: 3px;
 }
+
 .nav_icon__profile img {
     height: 29px;
     /* margin-top: 2px; */
@@ -295,7 +313,7 @@ main {
 }
 
 section {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     position: relative;
 }
 
@@ -307,12 +325,14 @@ section {
 .cart .section_title {
     font-size: 28px;
     margin-top: 11px;
-    margin-bottom: 27px;
+    margin-bottom: 23px;
     font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 36px;
 }
 
 .cart__check_all {
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
     padding-bottom: 16px;
 }
 
@@ -325,21 +345,32 @@ section {
 }
 
 .good__checkbox .custom_checkbox {
-    top: 37.5px;
+    top: 49px;
 }
 
 .checkbox_container {
     position: relative;
+    /* display: flex;
+    align-items: center; */
 }
 
 .custom_checkbox {
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
     height: 23px;
     width: 22px;
     background-image: url(./assets/icons/checkbox.svg);
     background-repeat: no-repeat;
+}
+
+.cart__check_all .custom_checkbox {
+    top: 16px;
+}
+
+.cart__check_all .chevron {
+    
 }
 
 .checkbox {
@@ -353,7 +384,7 @@ section {
 }
 
 .agree_checkbox .custom_checkbox {
-    top: 3px;
+    top: 15px;
     background-image: url(./assets/icons/checkbox.svg);
     background-size: 13px;
 }
@@ -385,7 +416,7 @@ article {
 
 .good {
     justify-content: space-between;
-    padding: 12px 0 20px;
+    padding: 11px 0 20px;
 }
 
 .add_to_favorites {
@@ -412,11 +443,12 @@ article {
 
 .good__title {
     line-height: 24px;
+    margin-bottom: 8px;
 }
 
 .good__parameters {
     font-size: 13px;
-    margin-top: 8px;
+    /* margin-top: 8px; */
     display: flex;
 }
 
@@ -441,6 +473,7 @@ article {
 .good__seller {
     font-size: 13px;
     font-weight: 400;
+    line-height: 16px;
     margin-top: 8px;
     color: #8A898E;
 }
@@ -448,6 +481,11 @@ article {
 .good__seller_legal_name {
     display: flex;
     margin-top: 4px;
+}
+
+.good__seller_legal_name img {
+    margin-top: -2px;
+    margin-left: 6px;
 }
 
 .counter {
@@ -459,17 +497,30 @@ article {
     width: 100px;
     height: 44px;
     margin: 0;
+    padding: 0 2px 5px;
 }
 
 .counter__quantity {
     height: 100%;
     width: 44px;
+    /* width: 21px; */
     text-align: center;
+}
+
+.counter__decrease,
+.counter__increase {
+    font-size: 20px;
+    width: 24px;
+    margin-top: -1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .good__in_stock {
     font-size: 13px;
     font-weight: 400;
+    line-height: 16px;
     margin-top: 8px;
     color: #FF3B30;
 }
@@ -480,12 +531,22 @@ article {
     margin-top: 8px;
 }
 
+.cart__out_of_stock {
+    margin-top: 14px;
+    margin-bottom: 19px;
+}
+
+.cart__out_of_stock .good{
+    padding-bottom: 21px;
+}
+
 .cart__out_of_stock .good__action {
-    margin-right: 128.5px;
+    margin-top: 0;
+    margin-right: 125.5px;
 }
 
 .good__action>div {
-    margin-left: 18.5px;
+    margin-left: 16.5px;
 }
 
 .good__price,
@@ -505,15 +566,32 @@ article {
 .good__price .price {
     font-size: 20px;
     font-weight: 700;
+    margin-top: -7px;
+    margin-bottom: 1.5px;
+}
+
+.good__price .price_sum {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.good__price .price_cur {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
 }
 
 .price_sum.big_sum {
     font-size: 16px;
 }
 
-.good__price .old_price {
+.good__price .old_price
+/* .good__price .price_sum,
+.good__price  .price_cur  */
+{
     font-size: 13px;
     font-weight: 400;
+    line-height: 16px;
     color: #8A898E;
     text-decoration: line-through;
     border-bottom: 1px dashed #8A898E;
@@ -523,6 +601,11 @@ article {
 .good__details {
     margin-left: 16px;
     max-width: 275px;
+    line-height: 16px;
+}
+
+.cart__out_of_stock .good__details {
+    max-width: 309px;
 }
 
 .cart__out_of_stock .section_title {
@@ -535,8 +618,11 @@ article {
 }
 
 .order_summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #FFFFFF;
-    padding: 11px 25px;
+    padding: 11px 22px 24px;
     border-radius: 16px;
     /* width: 32.357vw; */
     min-width: 245px;
@@ -559,11 +645,19 @@ article {
 }
 
 .payment__card {
+    margin-top: -2px;
     display: flex;
+    align-items: center;
 }
 
 .summary__payment {
+    margin-top: 5px;
     margin-bottom: 12px;
+    margin-left: 1px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    
 }
 
 .payment__card_number {
@@ -580,7 +674,9 @@ article {
     margin-left: 1px;
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 8px;
+    /* margin-left: 2px; */
+    padding: 0 2px;
+    margin-bottom: 1px;
 }
 
 .summary__price {
@@ -594,6 +690,12 @@ article {
 
 .order_summary .order_btn {
     margin-bottom: 12px;
+    margin-left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 255px;
+    padding-bottom: 6px;
 }
 
 .button {
@@ -611,6 +713,8 @@ article {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 4px;
+    line-height: 21px;
+    padding: 0 1px;
 }
 
 .order_summary .delivery__date {
@@ -639,18 +743,29 @@ article {
     height: 22px;
 }
 
+.order_summary .payment__pay_now {
+    padding: 8px 8px;
+    line-height: 16px;
+}
+
 .green-dashed {
     color: #0CB477;
     border-bottom: 1px dashed #0CB477;
 }
 
-.delivery__refusal {
+.order_summary .delivery__refusal {
     display: flex;
-    align-items: center;
+    line-height: 15px;
+    padding: 8px 10px 12.5px;
+    /* align-items: center; */
 }
 
 .delivery__refusal .refusal__check {
     padding-right: 8px;
+}
+
+.order_summary .delivery__refusal .refusal__check {
+    margin-top: 3.5px;
 }
 
 .order__refund,
@@ -697,6 +812,25 @@ article {
     margin-bottom: 24px;
 }
 
+.summary__info .summary__delivery {
+    margin-bottom: 26px;
+}
+
+.summary__goods table {
+    width: 100%;
+    /* margin-left: -3px; */
+   
+}
+
+.summary__goods tr {
+    /* line-height: 20.5px; */
+    line-height: 20px;
+}
+
+.td_right {
+    text-align: end;
+}
+
 .pay_now__explanation {
     margin-top: 8px;
     margin-bottom: 4px;
@@ -706,6 +840,9 @@ article {
     font-size: 13px;
     font-weight: 400;
     padding-left: 21px;
+    line-height: 16px;
+    max-width: 255px;
+    margin-left: 2px;
 }
 
 .order_details {
@@ -715,13 +852,18 @@ article {
 .order_details__heading {
     display: flex;
     justify-content: space-between;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
     margin-bottom: 16px;
+    word-spacing: -2px;
 }
 
 .delivery_pickpoint_info,
 .pickpoint_rating {
     font-size: 13px;
     display: flex;
+    line-height: 16px;
 }
 
 .delivery_pickpoint_info {
@@ -741,12 +883,15 @@ article {
     background-color: transparent;
     font-size: 16px;
     font-weight: 700;
+    line-height: 24px;
+    margin-top: 6px;
+    margin-right: -4px;
 }
 
 .order_details__item {
     background-color: #FFFFFF;
     border-radius: 16px;
-    padding: 24px;
+    padding: 16px 24px 24px;
     margin-bottom: 16px;
 }
 
@@ -763,7 +908,8 @@ article {
 /* ////////
 #F55123 */
 .delivery__dates_goods {
-    gap: 8px;
+    /* gap: 8px; */
+    gap: 6px;
 }
 
 .delivery__goods_item_quantity {
@@ -790,9 +936,23 @@ article {
 
 .order_delivery__info {
     display: grid;
-    column-gap: 32px;
+    column-gap: 0;
     row-gap: 16px;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 185px auto;
+    line-height: 24px;
+}
+
+/* .delivery__dates_dates {
+    font-weight: 600;
+} */
+
+.delivery__info_details {
+    margin-left: 2px;
+}
+
+.delivery__info .delivery__adress {
+    margin-top: 8px;
+    line-height: 16px;
 }
 
 .delivery__dates_goods,
@@ -801,12 +961,17 @@ article {
 }
 
 .order__refund {
+    font-size: 13px;
+    font-weight: 400;
     margin-top: 24px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
 }
 
 .green-check {
-    height: 20px;
-    margin-right: 9px;
+    height: 22px;
+    margin-right: 8px;
 }
 
 .green-check img {
@@ -817,16 +982,19 @@ article {
     font-size: 13px;
     font-weight: 400;
     color: #9797AF;
-    margin-top: 8px;
+    margin-top: 2px;
+    margin-bottom: -3px;
 }
 
 .customer_form {
+    margin-top: 33px;
     width: 100%;
     max-width: 590px;
 }
 
 .customer_form__input {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0;
 }
 
 .order_buyer {
@@ -848,7 +1016,8 @@ article {
 .customer_form__input_container {
     width: 100%;
     position: relative;
-    height: 64px;
+    /* height: 64px; */
+    height: 28px;
     display: flex;
     align-items: center;
 }
@@ -861,7 +1030,8 @@ article {
     font-size: 12px;
     font-weight: 400;
     position: absolute;
-    bottom: 0;
+    bottom: -20.5px;
+    left: 0;
 }
 
 .field_name {
@@ -901,8 +1071,10 @@ article {
     background-repeat: no-repeat;
     transform: rotate(180deg);
     position: absolute;
-    top: 0;
-    right: 0;
+    /* top: 0;
+    right: 0; */
+    top: 12px;
+    right: 2px;
 }
 
 details[open] .chevron {
