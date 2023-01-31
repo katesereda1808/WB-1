@@ -369,8 +369,10 @@ section {
     top: 16px;
 }
 
-.cart__check_all .chevron {
-    
+/* .cart__check_all  */
+.chevron {
+    top: 12px;
+    right: 2px;
 }
 
 .checkbox {
@@ -501,6 +503,9 @@ article {
 }
 
 .counter__quantity {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
     height: 100%;
     width: 44px;
     /* width: 21px; */
@@ -1073,8 +1078,8 @@ article {
     position: absolute;
     /* top: 0;
     right: 0; */
-    top: 12px;
-    right: 2px;
+    /* top: 12px;
+    right: 2px; */
 }
 
 details[open] .chevron {
@@ -1286,7 +1291,7 @@ details>summary {
     left: 0;
     bottom: 0;
 }
-
+/* // desktop */
 @media (max-width: 1400px) {
     .order_summary {
         width: 624px;
@@ -1311,8 +1316,13 @@ details>summary {
         max-width: 700px;
     }
 }
-
-@media (max-width:900px) {
+@media (max-width: 1024px) {
+    .order_summary {
+        width: 437px;
+    }
+}
+/* // mobile */
+@media (max-width: 900px) {
     .mobile {
         display: flex;
     }
@@ -1333,6 +1343,8 @@ details>summary {
 
     .order_delivery__info {
         grid-template-columns: auto;
+        row-gap: 8px;
+        column-gap: 8px;
     }
 
     .good {
@@ -1340,7 +1352,7 @@ details>summary {
     }
 
     .page_header {
-        padding: 14px 14px 38px;
+        padding: 9px 13px 37px;
     }
 
     .header__search {
@@ -1357,7 +1369,8 @@ details>summary {
     .header__search_sign {
         height: 21px;
         opacity: 1;
-        padding-right: 3px;
+        /* padding-right: 3px; */
+        margin-top: 8px;
     }
 
     .header__item {
@@ -1371,14 +1384,34 @@ details>summary {
         letter-spacing: 2px;
         width: auto;
         text-transform: uppercase;
+        margin-top: 1px;
     }
 
     .header__menu {
         height: 28px;
         width: 28px;
         margin-right: 0;
+        margin-top: 5px;
         background-image: url(./assets/icons/burger-mobile.svg);
     }
+
+    /* .cart__check_all  */
+    .chevron {
+        top: 12px;
+        right: 6px;
+    }
+
+    .good {
+        padding-top: 12px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .last_item {
+        border-bottom: 1px solid transparent;
+    }
+    /* .in_the_cart_goods:last-child {
+        border-bottom: 1px solid rgba(255, 0, 0, 1);
+    } */
 
     .good__quantity {
         align-items: center;
@@ -1397,6 +1430,7 @@ details>summary {
     .good__price .old_price {
         text-align: start;
         margin-left: 5px;
+        margin-top: -1px;
     }
 
     .good__order {
@@ -1411,10 +1445,44 @@ details>summary {
 
     .counter {
         width: 80px;
+        height: 32px;
+        padding: 0 3px 5px;
+    }
+
+    .counter__quantity {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        width: 32px;
+    }
+
+    .good__in_stock {
+        margin-top: -1px;
+        margin-left: 11px;
+    }
+
+    .good__action {
+        margin-top: 0;
+        margin-right: 12px;
+    }
+
+    .good__action>div {
+        margin-left: 24px;
+    }
+
+    .cart__out_of_stock {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 5px;
+    }
+
+    .cart__out_of_stock .good {
+        padding-bottom: 17px;
     }
 
     .cart__out_of_stock .good__action {
-        margin-right: 6.5px;
+        margin-top: 2px;
+        margin-right: 4.5px;
         margin-left: auto;
     }
 
@@ -1439,24 +1507,85 @@ details>summary {
         width: 100%;
     }
 
+    .nav_mobile__home {
+        margin-top: 3px;
+        margin-left: 2px;
+    }
+
+    .nav_mobile__favorites {
+        margin-right: -3px;
+    }
+
+    .nav_mobile__cart {
+        margin-right: -3px;
+    }
+
+    .nav_mobile__search {
+        margin-right: -3px;
+    }
+
+    .order_details__item {
+        padding: 14.5px 16px 24px;
+        margin-bottom: 11px;
+    }
+
     .order_details__heading {
         font-size: 20px;
         font-weight: 700;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+    }
+
+    .order_details__change {
+        margin-top: 3px;
+        margin-right: -6px;
     }
 
     .order_delivery__sum {
         margin-top: -5px;
+        margin-bottom: -9px;
     }
 
     .order_delivery__info .emphasize {
         margin-bottom: -8px;
     }
 
+    .order_delivery__info .delivery__heading {
+        margin-top: 8px;
+        margin-bottom: -3px;
+    }
+
+    .order_delivery__info .delivery__dates_dates {
+        margin-top: 17px;
+        margin-bottom: 4px;
+    }
+
+    .order__refund {
+        margin-left: 8px;
+        max-width: 272px;
+    }
+
+    .customer_form {
+        margin-top: 19px;
+    }
+
     .form__customer_name,
     .form__customer_contacts {
         display: flex;
         flex-direction: column;
+    }
+
+    .form__customer_name {
+        gap: 44px;
+    }
+
+    .form__customer_contacts {
+        margin-top: 44px;
+        gap: 44px;
+    }
+    
+    .order_buyer {
+        padding-bottom: 40px;
+        margin-bottom: 17px;
     }
 
     .order_summary {
@@ -1466,6 +1595,8 @@ details>summary {
         box-shadow: none;
         width: 100%;
         margin-left: 0;
+        padding-top: 0;
+        padding-bottom: 4px;
     }
 
     .order_summary .delivery__refusal,
@@ -1474,7 +1605,15 @@ details>summary {
     }
 
     .order_summary {
-        padding-bottom: 4px;
+        margin-bottom: 13px;
+    }
+
+    .order_summary .delivery__refusal {
+        padding: 8px 8px 12.5px;
+    }
+
+    .summary__info .summary__delivery {
+        margin-bottom: 15px;
     }
 
     section {
@@ -1483,25 +1622,68 @@ details>summary {
 
     .cart .section_title {
         font-size: 20px;
-        margin-bottom: 16px;
-        margin-top: -8px;
+        margin-bottom: 8px;
+        margin-top: -12px;
     }
 
     .good__title {
         font-size: 14px;
         font-weight: 400;
+        margin-bottom: 6.5px;
+        line-height: 20px;
+    }
+
+    .good__price {
+        margin-top: 7px;
+        margin-left: 1px;
+        margin-bottom: 2px;
     }
 
     .good__price .price {
         font-size: 16px;
+        margin-bottom: 0;
+        /* margin-top: 0; */
+        /* font-weight: 700;
+        line-height: 24px; */
+    }
+
+    .good__price .price_sum,
+    .good__price .price_cur {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
     }
 
     .summary__heading {
         font-size: 20px;
+        margin-left: -2px;
+        letter-spacing: -0.2px;
+    }
+
+    .summary__info .summary__goods {
+        margin-bottom: 18px;
     }
 
     .summary__goods table {
         width: 100%;
+        margin-top: -2px;
+        /* margin-left: 3px */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .summary__payment {
+        margin-top: 16px;
+        margin-bottom: 12px;
+        margin-left: 0px;
+    }
+
+    .order_summary .order_btn {
+        margin-left: 0;
+    }
+
+    .agree_checkbox {
+        margin-left: 0;
     }
 
     .td_right {
@@ -1531,7 +1713,7 @@ details>summary {
     }
 
     .good__checkbox .custom_checkbox {
-        top: 4px;
+        top: 14.5px;
         left: 4px;
         background-image: url(./assets/icons/checkbox-white.svg);
     }
@@ -1568,6 +1750,17 @@ details>summary {
 }
 
 @media (max-width: 491px) {
+    .good__title {
+        /* white-space: nowrap; */
+        /* padding-right: 5px; */
+        max-width: 192px;
+        max-height: 40px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .order_delivery .free-delivery[data-tooltip]::after {
         left: 0;
         top: auto;

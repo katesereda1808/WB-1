@@ -109,9 +109,12 @@ function loadGoods(goodsArr) {
     const goodsContainer = document.querySelector(".in_the_cart_goods")
     goodsContainer.innerHTML = ''
 
-    goodsArr.map((goodItem) => {
+    goodsArr.map((goodItem, i) => {
         const goodLayout = document.createElement("div");
-        goodLayout.className = "good"
+        goodLayout.className = "good";
+        if(i === goodsArr.length-1){
+            goodLayout.classList.add("last_item");
+        }
         goodLayout.innerHTML = `
         <div class="good__info">
             <label class="good__checkbox checkbox_container">
