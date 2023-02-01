@@ -13,57 +13,60 @@ let totalSumWithoutDiscount = 0;
 let totalQuantity = null;
 
 const goodsInCartArr = [
-    {
-        id: 1,
-        img: "./assets/images/good-1.png",
-        price: 522,
-        old_price: 1051,
-        title: "Футболка UZcotton мужская",
-        color: "белый",
-        size: "56",
-        seller_name: "Коледино WB",
-        seller_legal_name: "OOO Вайлдберриз",
-        quantity: 1,
-        left_in_stock: "Осталось 2 шт.",
-        price_total: null,
-        old_price_total: null,
-        checked: false
-
-    },
-    {
-        id: 2,
-        img: "./assets/images/good-2.png",
-        price: 10500.23,
-        old_price: 11500.24,
-        title: "Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe",
-        color: "прозрачный",
-        size: "",
-        seller_name: "Коледино WB",
-        seller_legal_name: "OOO Мегапрофстиль",
-        quantity: 200,
-        left_in_stock: "",
-        price_total: null,
-        old_price_total: null,
-        checked: false
-    },
-    {
-        id: 3,
-        img: "./assets/images/good-3.png",
-        price: 494,
-        old_price: 950,
-        title: "Карандаши цветные Faber-Castell \"Замок\", набор 24 цвета, заточенные, шестигранные,<br> Faber-Castell",
-        color: "",
-        size: "",
-        seller_name: "Коледино WB",
-        seller_legal_name: "OOO Вайлдберриз",
-        quantity: 2,
-        left_in_stock: "Осталось 2 шт.",
-        price_total: null,
-        old_price_total: null,
-        checked: false
-
-    }
-]
+  {
+    id: 1,
+    img: "./assets/images/good-1.png",
+    price: 522,
+    old_price: 1051,
+    title: "Футболка UZcotton мужская",
+    color: "белый",
+    size: "56",
+    seller_name: "Коледино WB",
+    seller_legal_name: "OOO Вайлдберриз",
+    quantity: 1,
+    in_stock: 3,
+    left_in_stock: "",
+    price_total: null,
+    old_price_total: null,
+    checked: false,
+  },
+  {
+    id: 2,
+    img: "./assets/images/good-2.png",
+    price: 10500.23,
+    old_price: 11500.24,
+    title:
+      "Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe",
+    color: "прозрачный",
+    size: "",
+    seller_name: "Коледино WB",
+    seller_legal_name: "OOO Мегапрофстиль",
+    quantity: 200,
+    in_stock: 1000,
+    left_in_stock: "",
+    price_total: null,
+    old_price_total: null,
+    checked: false,
+  },
+  {
+    id: 3,
+    img: "./assets/images/good-3.png",
+    price: 494,
+    old_price: 950,
+    title:
+      'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные,<br> Faber-Castell',
+    color: "",
+    size: "",
+    seller_name: "Коледино WB",
+    seller_legal_name: "OOO Вайлдберриз",
+    quantity: 2,
+    in_stock: 4,
+    left_in_stock: "",
+    price_total: null,
+    old_price_total: null,
+    checked: false,
+  },
+];
 let checkedGoods = [];
 
 function checkGood(goodItem, goodLayout) {
@@ -160,7 +163,7 @@ function loadGoods(goodsArr) {
                     ${goodItem.title}
                 </p>
                 <div class="good__parameters ${
-                  (!goodItem.color && !goodItem.size)?'hidden':''
+                  !goodItem.color && !goodItem.size ? "hidden" : ""
                 }">
                     <p class="good__color">
                     ${goodItem.color ? "Цвет: " + goodItem.color : ""}
@@ -205,7 +208,12 @@ function loadGoods(goodsArr) {
                     </div>
                 </div>
                 <div class="good__in_stock">
-                ${goodItem.left_in_stock}
+                
+                ${
+                  goodItem.in_stock - goodItem.quantity > 2
+                    ? ""
+                    : `Осталось ${goodItem.in_stock - goodItem.quantity} шт.`
+                }
                 </div>
                 <div class="good__action">
                     <div class="add_to_favorites">
@@ -280,26 +288,44 @@ function processAllPrices() {
 function changeQuantityAndPrices(operation, goodObject, goodLayout) {
     let quantity = goodObject.quantity;
     let counter_input = goodLayout.querySelector(".counter__quantity");
-    if (operation === 'input') {
-        counter_input.value = counter_input.value.replace(/[^\d]/g, '');
-        goodObject.quantity = counter_input.value;
-        multiplyGoodsPrice(goodObject, goodLayout);
-        processAllPrices();
+    if (operation === "input") {
+      if (goodObject.in_stock < counter_input.value) {
+        counter_input.value = goodObject.in_stock;
+      }
+      counter_input.value = counter_input.value.replace(/[^\d]/g, "");
+      goodObject.quantity = counter_input.value;
+      renderActualGoodData(goodObject, goodLayout);
     } else {
-        if (operation === 'increase') {
-            goodObject.quantity = ++quantity;
-            counter_input.value = quantity;
-            multiplyGoodsPrice(goodObject, goodLayout);
-            processAllPrices()
-        } else if (operation === 'decrease' && quantity > 1) {
-            goodObject.quantity = --quantity;
-            counter_input.value = quantity;
-            multiplyGoodsPrice(goodObject, goodLayout);
-            processAllPrices()
-        }
+      if (
+        operation === "increase" &&
+        goodObject.in_stock > goodObject.quantity
+      ) {
+        goodObject.quantity = ++quantity;
+        counter_input.value = quantity;
+        renderActualGoodData(goodObject, goodLayout);
+      } else if (operation === "decrease" && quantity > 1) {
+        goodObject.quantity = --quantity;
+        counter_input.value = quantity;
+        renderActualGoodData(goodObject, goodLayout);
+      }
     }
 }
 
+function renderActualGoodData(goodObject, goodLayout) {
+    multiplyGoodsPrice(goodObject, goodLayout);
+    processAllPrices();
+    renderLeftInStock(goodObject, goodLayout);
+}
+
+function renderLeftInStock(goodObject, goodLayout) {
+  if (goodObject.in_stock - goodObject.quantity < 4) {
+    goodObject.left_in_stock = goodObject.in_stock - goodObject.quantity;
+    renderValue(
+      goodLayout.querySelector(".good__in_stock"),
+      `Осталось ${goodObject.left_in_stock} шт.`
+    );
+  }
+}
 function renderValue(place, value) {
     place.innerHTML = value
 }
@@ -465,7 +491,7 @@ for (let i = 0; i < phoneInputs.length; i++) {
 }
 
 let regName = /^[a-zа-яё]+$/i;
-let regPhone = /^[\+\(]{0,1}[\d]+[a-z\(\)\-\+\s]*/ig;
+let regPhone = /(?=.{1,60}$)/;
 let regEmail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
 
 /// в тз описана валидация только индекса
@@ -495,6 +521,7 @@ let regInn = /^\d{1,10}$/;
 function clearWarning(input) {
     let inputContainer = input.parentElement;
     inputContainer.classList.remove('invalid');
+    inputContainer.classList.remove('empty');
     Array.from(inputContainer.children).map((el) => {
         if (el.classList.contains('error')) {
             el.remove();

@@ -120,6 +120,10 @@ img {
     display: block;
 }
 
+button {
+    cursor: pointer;
+}
+
 input,
 button,
 textarea,
@@ -355,6 +359,7 @@ section {
 }
 
 .custom_checkbox {
+    cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -371,6 +376,7 @@ section {
 
 /* .cart__check_all  */
 .chevron {
+    cursor: pointer;
     top: 12px;
     right: 2px;
 }
@@ -514,6 +520,7 @@ article {
 
 .counter__decrease,
 .counter__increase {
+    cursor: pointer;
     font-size: 20px;
     width: 24px;
     margin-top: -1px;
@@ -551,6 +558,7 @@ article {
 }
 
 .good__action>div {
+    cursor: pointer;
     margin-left: 16.5px;
 }
 
@@ -1281,7 +1289,7 @@ details>summary {
     border-bottom: 1px solid #F55123;
 }
 .error.long_msg {
-    bottom: -15px;
+    /* bottom: -15px; */
 }
 .error {
     font-size: 12px;
@@ -1289,7 +1297,7 @@ details>summary {
     color: #F55123;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -20px;
 }
 /* // desktop */
 @media (max-width: 1400px) {
