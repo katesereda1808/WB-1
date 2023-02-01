@@ -674,17 +674,14 @@ function validateInput(input) {
   }
 }
 
-////
-
-
 let delivery = document.querySelectorAll(".delivery__dates_goods");
 let delivery_dates = document.querySelectorAll(".delivery__dates_dates");
-console.log(delivery);
-goodsInCartArr;
-//////
+
 function renderDeliveryDates() {
     delivery[0].innerHTML = "";
     delivery[1].innerHTML = "";
+    delivery_dates[0].classList.add("hidden");
+    delivery_dates[1].classList.add("hidden");
     for (let i = 0; i < goodsInCartArr.length; i++) {
       const good = goodsInCartArr[i];
       if (good.checked === true) {
@@ -705,6 +702,7 @@ function renderDeliveryDates() {
         </div>`;
           date = 1;
           quantity = quantity - 184;
+          delivery_dates[1].classList.remove("hidden");
         }
         delivery[date].innerHTML += `
         <div class="delivery__dates_goods_item">
@@ -718,15 +716,9 @@ function renderDeliveryDates() {
         }
   </div>
   `;
+    delivery_dates[0].classList.remove("hidden");
       }
     }
-    // if(!delivery[0].innerHTML.length > 0){
-    //     delivery_dates[0].classList.add("hidden")
-    // }
-    // if (!delivery[1].innerHTML.length > 0) {
-    //   delivery_dates[1].classList.add("hidden");
-    // }
-
 }
 
 renderDeliveryDates();
