@@ -388,6 +388,12 @@ function multiplyPrices(goodObject, goodLayout, marker) {
   let prices = goodLayout.querySelectorAll(`.${marker}price_sum`);
   for (const price of prices) {
     price.innerText = sum;
+    console.log((''+sum).length)
+    if (("" + sum).length > 5) {
+      price.classList.add("big_sum");
+    } else {
+        price.classList.remove("big_sum");
+    }
   }
 }
 
